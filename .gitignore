@@ -1,0 +1,7 @@
+.idea/
+.DS_Store/
+test.py
+__pycache__/
+venv
+
+tests
