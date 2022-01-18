@@ -93,7 +93,9 @@ class Ticket(object):
         return CITY_MAP.CODE_CITY.get(stations, stations)
 
     def format_ticket(self, ticket):
-        if ticket == '' or ticket == '无' or ticket == '有':
+        if ticket == '':
+            return '--'
+        if ticket == '无' or ticket == '有':
             return ticket
         return int(ticket)
 
@@ -102,7 +104,7 @@ class Ticket(object):
         data_list = list()
         sheet = ticket_sheet()
         for tk_ in result:
-            tk_info = tk_.split('预订')[1]
+            tk_info = tk_.split('预订')[-1]
             pr_info = re.match(
                 r'^\|(.*?)\|(.*?)\|(.*?)\|(.*?)\|(.*?)\|(.*?)\|(\d{2}:\d{2})\|(\d{2}:\d{2})\|(\d{2}:\d{2})\|([YN])\|',
                 tk_info)
@@ -157,7 +159,7 @@ class Ticket(object):
 
 
 if __name__ == '__main__':
-    start_point = '北京'
+    start_point = '合肥'
     end__point = '淮南'
     journey_date = '2022-01-27'
     age_type = 'ADULT'

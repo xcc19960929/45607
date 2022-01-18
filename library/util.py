@@ -16,7 +16,7 @@ def log(s, color=None):
     if color == 'r':
         return "\033[31m%s\033[0m" % s
     elif color == 'y':
-        return "\033[33m%ds\033[0m" % s
+        return "\033[33m%s\033[0m" % s
     elif color == 'g':
         return "\033[32m%s\033[0m" % s
     elif color == 'b':
@@ -37,8 +37,11 @@ class ticket_sheet:
         train_fields = list()
         for field in self.fields[1:]:
             value = train[field]
-            if isinstance(value, int) and value <= 5:
-                value = log(value, 'r')
+            if isinstance(value, int):
+                if value <= 5:
+                    value = log(value, 'r')
+                else:
+                    value = log(value, 'y')
             train_fields.append(value)
         self.add_row(
             train['车次'],
