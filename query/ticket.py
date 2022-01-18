@@ -128,7 +128,11 @@ class Ticket(object):
                     '二等卧': self.format_ticket(tk_num[15]),
                     '软卧': self.format_ticket(tk_num[11]),
                     '硬座': self.format_ticket(tk_num[16]),
-                    '无座': self.format_ticket(tk_num[13])
+                    '无座': self.format_ticket(tk_num[13]),
+                    'from_station_no': tk_num[3],
+                    'to_station_no': tk_num[4],
+                    'seat    types': tk_num[21],
+                    'train    date': self.journey_date
                 }
                 data_list.append(train_info)
                 sheet.add_train(train_info)
@@ -153,9 +157,9 @@ class Ticket(object):
 
 
 if __name__ == '__main__':
-    start_point = '杭州'
+    start_point = '北京'
     end__point = '淮南'
-    journey_date = '2022-01-29'
+    journey_date = '2022-01-27'
     age_type = 'ADULT'
     tk_r = Ticket(start_point, end__point, journey_date, age_type).query()
     loguru.logger.info(tk_r)
